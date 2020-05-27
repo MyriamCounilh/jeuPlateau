@@ -20,3 +20,14 @@ h1 {
 h2 {
     font-family: "Piedra", Serif;
 }
+
+/*.case {
+    width : 30px;
+    height: 30px;
+}*/
+
+td {
+    width : 20px;
+    height: 20px;
+    border : 1px solid black;
+}
