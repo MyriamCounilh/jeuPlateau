@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Gloria Hallelujah";
+    src: url("/font/GloriaHallelujah-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Piedra";
+    src: url("/font/Piedra-Regular.ttf") format("truetype");
+}
+
+body {
+    /*background: #00837a;*/
+    background: #00a4c6;
+}
+
+h1 {
+    font-family: "Gloria Hallelujah", Serif;
+}
+
+h2 {
+    font-family: "Piedra", Serif;
+}
