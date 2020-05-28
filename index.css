@@ -21,13 +21,23 @@ h2 {
     font-family: "Piedra", Serif;
 }
 
-/*.case {
-    width : 30px;
-    height: 30px;
-}*/
+:root{
+    --qteColones : 6;
+    --tailleCellule:50px;
+}
 
-td {
-    width : 20px;
-    height: 20px;
-    border : 1px solid black;
+plateau {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: calc(var(--tailleCellule) * var(--qteColones) );
+}
+
+case {
+    border: 1px solid;
+    width: 50px;
+    height: 50px;
+}
+
+case.obstacle{
+    background-color: grey;
 }
