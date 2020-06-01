@@ -23,21 +23,36 @@ h2 {
 
 :root{
     --qteColones : 6;
-    --tailleCellule:50px;
+    --tailleCellule: 60px;
 }
 
 plateau {
     display: flex;
     flex-wrap: wrap;
     max-width: calc(var(--tailleCellule) * var(--qteColones) );
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 case {
     border: 1px solid;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
 }
 
 case.obstacle{
-    background-color: grey;
+    background-image: url(img/arbre.png);
+    background-size: contain;
+
+}
+
+case.player1 {
+    background-image: url(img/pion/chapeau_2.png);
+    background-size: contain;
+}
+
+case.player2 {
+    background-image: url(img/pion/chapeau_3.png);
+    background-size: contain;
 }
