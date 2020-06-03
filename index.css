@@ -58,27 +58,31 @@ case.player2 {
     background-size: contain;
 }
 
-case.arme1 {
+case.baguette {
     background-image: url(img/arme/baguette.png);
     background-size: 30px;
+    background-position: center;
     background-repeat:no-repeat;
 }
 
-case.arme2 {
+case.acromantula {
     background-image: url(img/arme/acromantula.jpg);
     background-size: 45px;
+    background-position: center;
     background-repeat:no-repeat;
 }
 
-case.arme3 {
+case.faux {
     background-image: url(img/arme/faux.png);
     background-size: 40px;
+    background-position: center;
     background-repeat:no-repeat;
 }
 
-case.arme4 {
+case.potion {
     background-image: url(img/arme/potion.png);
     background-size: 30px;
+    background-position: center;
     background-repeat:no-repeat;
 }
 
