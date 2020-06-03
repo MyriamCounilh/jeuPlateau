@@ -44,6 +44,7 @@ case {
 case.obstacle{
     background-image: url(img/arbre.png);
     background-size: contain;
+    background-color: dimgray;
 
 }
 
@@ -56,3 +57,28 @@ case.player2 {
     background-image: url(img/pion/chapeau_3.png);
     background-size: contain;
 }
+
+case.arme1 {
+    background-image: url(img/arme/baguette.png);
+    background-size: 30px;
+    background-repeat:no-repeat;
+}
+
+case.arme2 {
+    background-image: url(img/arme/acromantula.jpg);
+    background-size: 45px;
+    background-repeat:no-repeat;
+}
+
+case.arme3 {
+    background-image: url(img/arme/faux.png);
+    background-size: 40px;
+    background-repeat:no-repeat;
+}
+
+case.arme4 {
+    background-image: url(img/arme/potion.png);
+    background-size: 30px;
+    background-repeat:no-repeat;
+}
+
