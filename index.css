@@ -9,7 +9,6 @@
 }
 
 body {
-    /*background: #00837a;*/
     background: #00a4c6;
 }
 
@@ -48,12 +47,12 @@ case.obstacle{
 
 }
 
-case.player1 {
+case.joueur1 {
     background-image: url(img/pion/chapeau_2.png);
     background-size: contain;
 }
 
-case.player2 {
+case.joueur2 {
     background-image: url(img/pion/chapeau_3.png);
     background-size: contain;
 }

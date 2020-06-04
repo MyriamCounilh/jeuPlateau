@@ -11,5 +11,6 @@ class Composant{
     update(key, value){
         this[key] = value;
         this.render();
+        console.log(this.name, key, value);
     }
 }

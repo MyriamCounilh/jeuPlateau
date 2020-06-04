@@ -1,16 +1,8 @@
-class Weapon extends Composant{
+class Weapon {
 
-    constructor(name, domTarget, className) {
-        super(name, "case", domTarget);
-        this.label = "baguette";
-        this.degat = 10;
+    constructor(label, degat, className) {
         this.className = className;
-
-    }
-
-    render() {
-        this.DOM.className = this.className;
-        //if (this.label) this.DOM.className = "label";
-        //if (this.degat) this.DOM.className = "degat";
+        this.label = label;
+        this.degat = degat;
     }
 }
