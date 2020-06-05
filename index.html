@@ -27,7 +27,7 @@
     <body>
         <nav class="navbar">
             <div class="col-4">
-                <img class="img-fluid" src="img/logo.jpg"/>
+                <img class="img-fluid" src="img/logo.jpg" alt=""/>
             </div>
             <div class="container-fuild col-8 text-justify">
                 <h2 class="mb-3"> Projet 6 </h2>
@@ -38,7 +38,25 @@
         </nav>
 
         <div class="row-md pl-3 p-3">
-            <h5 class="mt-3">Choisir la difficulté</h5>
+            <h6>
+                <span class="texteRegle">Règle du jeu : </span></br>
+                <!--Une fois le niveau choisi, et lorsqu'on clique sur le bouton générer les pièces du jeu sont placées aléatoirement sur le plateau "Poudlard".<br/-->
+                Les joueurs jouent à tour de rôle.</br>
+                Un joueur peut se déplacer de 1 à 3 cases, les déplacements se font horizontalement ou verticalement.</br>
+                Les armes peuvent être récolté par les joueurs lorsqu'ils passeraient dessus.
+                Dans ces conditions, il laisse son arme actuelle sur place et la remplace par la nouvelle.</br>
+                Les armes infligent des nombres de dégâts différents, ce détail est indiqué en bas du tableau.</br>
+                Les joueurs ne peuvent évidemment pas passer à travers un arbre. </br>
+                Si les joueurs se croisent sur des cases adjacentes (horizontalement ou verticalement), un combat à mort s’engage.</br>
+            </h6>
+        </div>
+<!--Chacun leur tour, ils peuvent choisir d'attaquer (bouton "Attaquer" ou touche A), ou se défendre contre le prochain coup (bouton "Se défendre" ou touche D)
+                Les dégâts infligés à l'adversaire dépendent de l’arme possédée par le joueur
+                Lorsque le joueur se défend, il encaisse 50% de dégâts en moins qu’en temps normal
+                Dès que les points de vie d’un joueur (initialement à 100) tombent à 0 , celui-ci a perdu. Un message s’affiche et la partie est terminée.-->
+
+        <div class="row-md pl-3">
+            <h5 class="">Choisir la difficulté</h5>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="facile" value="option1"/>
                 <label class="form-check-label" for="facile">Facile</label>
@@ -53,18 +71,110 @@
             </div>
         </div>
 
-        <div class="my-4 pl-3 pr-3">
-           <button type="button" class="" onclick="generate()">Générer</button>
+        <div class="d-flex justify-content-around mt-3 pl-3">
+            <div class="input-group">
+                <input type="text" class="form-control" id="firstName1" placeholder="Prénom du joueur 1">
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="firstName2" placeholder="Prénom du joueur 2">
+            </div>
         </div>
 
+        <div class="my-3  pl-3">
+           <button type="button" class="button my-3" onclick="generate()">Générer</button>
+        </div>
 
         <div id="textePlateau">
         </div>
 
+        <div class="d-flex justify-content-center">
+            <div>
+                <div class="boite1 mr-3">
+                    <div class="boite2 ml-3">
+                        <div class="col" align="center">
+                            <div><img class="imgPion" src="img/pion/chapeau_2.png"></div>
+                            <div><h2 id="player1">Loulou</h2></div>
+                            <div class="progress">
+                                <!--div class="progress-bar progress-bar-striped bg-danger active" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10</div>
+                                <div class="progress-bar progress-bar-striped bg-warning active" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25</div>
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50</div>
+                                <div class="progress-bar progress-bar-striped bg-info active" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75</div-->
+                                <div class="progress-bar progress-bar-striped bg-success active" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+                            </div>
+                            <div class="weaponPlayer1">
+                                <div><img class="imgWeapon mt-3" src="img/arme/potion.png"></div>
+                                <div><h6>potion Flamme Violette</h6></div>
+                                <div><h6>Dégâts : 10 points</h6></div>
+                            </div>
+                            <div class="movementPlayer1">
+                                <input type="text" class="mb-3 form-control text-center"  placeholder="Se déplacer" disabled>
+                                <input type="text" class="mb-3 form-control text-center" placeholder="Se battre" disabled>
+                                <input type="text" class="mb-3 form-control text-center" placeholder="Se défendre" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="case pl-3 pr-3 mb-3" id="case">
+            <div class="case">
+                <plateau></plateau>
+            </div>
 
-            <plateau></plateau>
+            <div>
+                <div class="boite2 ml-3">
+                    <div class="col" align="center">
+                        <div><img class="imgPion" src="img/pion/chapeau_3.png"></div>
+                        <div><h2 id="player2">Lala</h2></div>
+                        <div class="progress">
+                            <!--div class="progress-bar progress-bar-striped bg-danger active" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10</div>
+                            <div class="progress-bar progress-bar-striped bg-warning active" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25</div>
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50</div>
+                            <div class="progress-bar progress-bar-striped bg-info active" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75</div-->
+                             <div class="progress-bar progress-bar-striped bg-success active" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+                        </div>
+                        <div class="weaponPlayer2">
+                            <div><img class="imgWeapon mt-3" src="img/arme/potion.png"></div>
+                            <div><h6>potion Flamme Violette</h6></div>
+                            <div><h6>Dégâts : 10 points</h6></div>
+                        </div>
+                        <div class="movementPlayer2">
+                            <input type="text" class="mb-3 form-control text-center" placeholder="Se déplacer" disabled>
+                            <input type="text" class="mb-3 form-control text-center" placeholder="Se battre" disabled>
+                            <input type="text" class="mb-3 form-control text-center" placeholder="Se défendre" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+
+        <div class="container-fluid Weapons mt-3">
+            <div class="row">
+                <div class="col" align="center">
+                    <div><img class="imgWeapon" src="img/arme/baguette.png"></div>
+                    <div><h6>Arme par défaut</h6></div>
+                    <div><h6>Dégâts : 10 points</h6></div>
+                </div>
+                <div class="col" align="center">
+                    <div><img class="imgWeapon" src="img/arme/acromantula.jpg"></div>
+                    <div><h6>Grande Tarentule</h6></div>
+                    <div><h6>Dégâts : 20 points</h6></div>
+                </div>
+                <div class="col" align="center">
+                    <div><img class="imgWeapon" src="img/arme/collierOpale.png"></div>
+                    <div><h6>Collier ensorcellé</h6></div>
+                    <div><h6>Dégâts : 15 points</h6></div>
+                </div>
+                <div class="col" align="center">
+                    <div><img class="imgWeapon" src="img/arme/faux.png"></div>
+                    <div><h6>Faux qui invoque un épouvantard</h6></div>
+                    <div><h6>Dégâts : 30 points</h6></div>
+                </div>
+                <div class="col" align="center">
+                    <div><img class="imgWeapon" src="img/arme/potion.png"></div>
+                    <div><h6>potion Flamme Violette</h6></div>
+                    <div><h6>Dégâts : 10 points</h6></div>
+                </div>
+            </div>
         </div>
 
         <!--début footer-->

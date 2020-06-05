@@ -20,6 +20,11 @@ h2 {
     font-family: "Piedra", Serif;
 }
 
+.texteRegle {
+    font-weight:bold;
+    margin-bottom: 10px;
+}
+
 :root{
     --qteColones : 6;
     --tailleCellule: 60px;
@@ -30,8 +35,6 @@ plateau {
     flex-wrap: wrap;
     max-width: calc(var(--tailleCellule) * var(--qteColones) );
     background-color: white;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 case {
@@ -40,48 +43,97 @@ case {
     height: 60px;
 }
 
-case.obstacle{
+.obstacle{
     background-image: url(img/arbre.png);
     background-size: contain;
-    background-color: dimgray;
+    /*background-color: dimgray;*/
 
 }
 
-case.joueur1 {
+.joueur1 {
     background-image: url(img/pion/chapeau_2.png);
     background-size: contain;
 }
 
-case.joueur2 {
+.joueur2 {
     background-image: url(img/pion/chapeau_3.png);
     background-size: contain;
 }
 
-case.baguette {
+.collierOpale {
+    background-image: url(img/arme/collierOpale.png);
+    background-size: 30px;
+    background-position: center;
+    background-repeat:no-repeat;
+}
+
+.baguette {
     background-image: url(img/arme/baguette.png);
     background-size: 30px;
     background-position: center;
     background-repeat:no-repeat;
 }
 
-case.acromantula {
+.acromantula {
     background-image: url(img/arme/acromantula.jpg);
     background-size: 45px;
     background-position: center;
     background-repeat:no-repeat;
 }
 
-case.faux {
+.faux {
     background-image: url(img/arme/faux.png);
     background-size: 40px;
     background-position: center;
     background-repeat:no-repeat;
 }
 
-case.potion {
+.potion {
     background-image: url(img/arme/potion.png);
     background-size: 30px;
     background-position: center;
     background-repeat:no-repeat;
 }
 
+.imgWeapon,
+.imgPion {
+    max-width: 20%;
+    height: auto;
+}
+
+.table {
+    border: aliceblue 1px solid;
+}
+
+.boite1 {
+    background-color: #46a7c6;
+    width: 400px;
+    height: 450px;
+}
+
+.boite2 {
+    background-color: #46a7c6;
+    width: 400px;
+    height: 450px;
+}
+
+.input-group {
+    width: 40% !important;
+}
+
+.button {
+    background-color: #07658d;
+    width: 150px;
+    height: 30px;
+    border: 1px #021919 dotted;
+}
+
+.button:hover {
+    background-color: #46a7c6;
+    border: 1px #46a7c6 dotted;
+}
+
+.button:focus {
+    background-color: #7c98aa;
+    border: 1px #7c98aa dotted;
+}
