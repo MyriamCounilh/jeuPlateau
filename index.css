@@ -20,14 +20,9 @@ h2 {
     font-family: "Piedra", serif;
 }
 
-.texteRegle {
-    font-weight:bold;
-    margin-bottom: 10px;
-}
-
 :root{
     --qteColones : 6;
-    --tailleCellule: 60px;
+    --tailleCellule: 70px;
 }
 
 plateau {
@@ -38,16 +33,14 @@ plateau {
 }
 
 case {
-    border: 1px solid;
-    width: 60px;
-    height: 60px;
+    border: 1px #07658d solid;
+    width: 70px;
+    height: 70px;
 }
 
 .obstacle{
     background-image: url(img/arbre.png);
     background-size: contain;
-    /*background-color: dimgray;*/
-
 }
 
 .joueur1 {
@@ -95,22 +88,18 @@ case {
     background-repeat:no-repeat;
 }
 
-.imgWeaponBoite {
+.imgWeaponBox {
     max-width: 32px;
     height: auto;
 }
 
 .imgWeapon,
-.imgPion {
+.imgPawn {
     max-width: 64px;
     height: auto;
 }
 
-.table {
-    border: aliceblue 1px solid;
-}
-
-.boite {
+.box {
     background-color: #46a7c6;
 }
 
@@ -137,4 +126,10 @@ case {
 .button:focus {
     background-color: #7c98aa;
     border: 1px #7c98aa dotted;
+}
+
+.modal-header,
+.modal-footer {
+    border-bottom: none !important;
+    border-top: none !important;
 }

@@ -17,15 +17,6 @@ var level = {
     }
 }
 
-//L’arme par défaut qui équipe les joueurs doit infliger 10 points de dégâts
-/*Lors d'un combat, le fonctionnement du jeu est le suivant :
-Chacun attaque à son tour
-Les dégâts infligés dépendent de l’arme possédée par le joueur
-Le joueur peut choisir d’attaquer ou de se défendre contre le prochain coup
-Lorsque le joueur se défend, il encaisse 50% de dégâts en moins qu’en temps normal
-Dès que les points de vie d’un joueur (initialement à 100) tombent à 0 , celui-ci a perdu.
-Un message s’affiche et la partie est terminée.*/
-
 poudlard['player1'] = new Player('joueur1');
 poudlard['player2'] = new Player('joueur2');
 
@@ -43,7 +34,7 @@ var indexRangee = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","
 function generate() {
     console.clear();
     difficulty = findLevel();
-    console.log(difficulty);
+
     let firstNameInput1 = $('#firstNameInput1').val();
     let firstNameInput2 = $('#firstNameInput2').val();
     if (firstNameInput1 === '') {
@@ -56,21 +47,21 @@ function generate() {
     }
     $('#firstName2').text(firstNameInput2);
 
-    $('.boite').each(function() {
+    $('.box').each(function() {
         $(this).removeClass('d-none');
     });
 
     if (Math.random() > 0.5) {
         poudlard['inTurn'] = poudlard['player1'];
-        alert(`${firstNameInput1} commence la partie`)
+        showModal(`${firstNameInput1} commence la partie`)
     } else {
         poudlard['inTurn'] = poudlard['player2'];
-        alert(`${firstNameInput2} commence la partie`)
+        showModal(`${firstNameInput2} commence la partie`)
     }
     showInTurn();
 
     if (level[difficulty] === undefined) {
-        alert("Merci de sélectionner un level !");
+        alert("Merci de sélectionner une difficulté !");
         return;
     }
 
@@ -181,7 +172,6 @@ function isPlayerHere(col, row){
     return false;
 }
 
-
 // @description
 function randomCase() {
     return indexRangee[Math.floor(Math.random() * level[difficulty].rangees)] + Math.floor(Math.random() * level[difficulty].colonnes);
@@ -196,10 +186,17 @@ function findLevel() {
 
 function showInTurn() {
     if (poudlard['inTurn'] === poudlard['player1']) {
-        $("#boitePlayer1").addClass("inTurn");
-        $("#boitePlayer2").removeClass("inTurn");
+        $("#boxPlayer1").addClass("inTurn");
+        $("#boxPlayer2").removeClass("inTurn");
     } else {
-        $("#boitePlayer1").removeClass("inTurn");
-        $("#boitePlayer2").addClass("inTurn");
+        $("#boxPlayer1").removeClass("inTurn");
+        $("#boxPlayer2").addClass("inTurn");
     }
+}
+
+function showModal(body) {
+    $('#modalBody').text(body);
+    $('#modal').modal({
+        show: true
+    });
 }

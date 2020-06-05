@@ -2,11 +2,10 @@ class Case extends Composant{
 
     constructor(name, domTarget){
         super(name, "case", domTarget);
-        this.DOM.innerHTML=name;
+        //this.DOM.innerHTML=name;
         this.obstacle = false;
         this.player = false;
         this.weapon = false;
-
     }
 
     render(){
