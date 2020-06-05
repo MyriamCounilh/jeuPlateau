@@ -13,11 +13,11 @@ body {
 }
 
 h1 {
-    font-family: "Gloria Hallelujah", Serif;
+    font-family: "Gloria Hallelujah", serif;
 }
 
 h2 {
-    font-family: "Piedra", Serif;
+    font-family: "Piedra", serif;
 }
 
 .texteRegle {
@@ -95,9 +95,14 @@ case {
     background-repeat:no-repeat;
 }
 
+.imgWeaponBoite {
+    max-width: 32px;
+    height: auto;
+}
+
 .imgWeapon,
 .imgPion {
-    max-width: 20%;
+    max-width: 64px;
     height: auto;
 }
 
@@ -105,16 +110,12 @@ case {
     border: aliceblue 1px solid;
 }
 
-.boite1 {
+.boite {
     background-color: #46a7c6;
-    width: 400px;
-    height: 450px;
 }
 
-.boite2 {
-    background-color: #46a7c6;
-    width: 400px;
-    height: 450px;
+.inTurn {
+    background-color: #145566;
 }
 
 .input-group {

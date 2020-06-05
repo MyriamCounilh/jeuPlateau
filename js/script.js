@@ -26,15 +26,16 @@ Lorsque le joueur se défend, il encaisse 50% de dégâts en moins qu’en temps
 Dès que les points de vie d’un joueur (initialement à 100) tombent à 0 , celui-ci a perdu.
 Un message s’affiche et la partie est terminée.*/
 
-var player1 = new Player('joueur1');
-var player2 = new Player('joueur2');
+poudlard['player1'] = new Player('joueur1');
+poudlard['player2'] = new Player('joueur2');
 
 var weaponDefault = new Weapon('baguette', 10, 'baguette')
 var weaponCollier = new Weapon('collier', 15, 'collierOpale');
 var weaponAcromantula = new Weapon('acromantula', 20, 'acromantula');
 var weaponFaux = new Weapon('faux', 30, 'faux');
 var weaponPotion = new Weapon('potion Flamme Violette', 10, 'potion');
-var weapons = [weaponCollier, weaponAcromantula, weaponFaux, weaponPotion];
+poudlard['weapons'] = [weaponCollier, weaponAcromantula, weaponFaux, weaponPotion];
+poudlard['inTurn'] = null;
 
 var difficulty;
 var indexRangee = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -43,9 +44,31 @@ function generate() {
     console.clear();
     difficulty = findLevel();
     console.log(difficulty);
-    firstName1 = player1;
-    firstName2 = player2;
-    console.log(player1, player2);
+    let firstNameInput1 = $('#firstNameInput1').val();
+    let firstNameInput2 = $('#firstNameInput2').val();
+    if (firstNameInput1 === '') {
+        firstNameInput1 = 'Harry';
+    }
+    $('#firstName1').text(firstNameInput1);
+
+    if (firstNameInput2 === '') {
+        firstNameInput2 = 'Ron';
+    }
+    $('#firstName2').text(firstNameInput2);
+
+    $('.boite').each(function() {
+        $(this).removeClass('d-none');
+    });
+
+    if (Math.random() > 0.5) {
+        poudlard['inTurn'] = poudlard['player1'];
+        alert(`${firstNameInput1} commence la partie`)
+    } else {
+        poudlard['inTurn'] = poudlard['player2'];
+        alert(`${firstNameInput2} commence la partie`)
+    }
+    showInTurn();
+
     if (level[difficulty] === undefined) {
         alert("Merci de sélectionner un level !");
         return;
@@ -81,13 +104,13 @@ function generate() {
     }
 
     //position des armes
-    let weaponToAdd = weapons.length;
+    let weaponToAdd = poudlard['weapons'].length;
     let positionWeapon;
     while (weaponToAdd > 0) {
         positionWeapon = randomCaseNumber();
         if (!isTaken(positionWeapon.col, positionWeapon.row)){
             weaponToAdd--;
-            poudlard[indexRangee[positionWeapon.row] + positionWeapon.col].update("weapon", weapons[weaponToAdd]);
+            poudlard[indexRangee[positionWeapon.row] + positionWeapon.col].update("weapon", poudlard['weapons'][weaponToAdd]);
         }
     }
 
@@ -106,7 +129,7 @@ function placePlayer1(){
     if (isTaken(position.col, position.row+1)) error++;
     if (isTaken(position.col, position.row-1)) error++;
     if (error >= 4) return placePlayer1();
-    else poudlard[indexRangee[position.row] + position.col].update("player", player1);
+    else poudlard[indexRangee[position.row] + position.col].update("player", poudlard['player1']);
 }
 
 //Place le joueur2
@@ -126,7 +149,7 @@ function placePlayer2(){
     if (isPlayerHere(position.col, position.row+1)) error++;
     if (isPlayerHere(position.col, position.row-1)) error++;
     if (error >= 1) return placePlayer2();
-    else poudlard[indexRangee[position.row] + position.col].update("player", player2);
+    else poudlard[indexRangee[position.row] + position.col].update("player", poudlard['player2']);
 }
 
 // @description vider la grille
@@ -169,4 +192,14 @@ function findLevel() {
     if (document.getElementById("moyen").checked) return "moyen";
     if (document.getElementById("dur").checked) return "dur";
     return "";
+}
+
+function showInTurn() {
+    if (poudlard['inTurn'] === poudlard['player1']) {
+        $("#boitePlayer1").addClass("inTurn");
+        $("#boitePlayer2").removeClass("inTurn");
+    } else {
+        $("#boitePlayer1").removeClass("inTurn");
+        $("#boitePlayer2").addClass("inTurn");
+    }
 }
