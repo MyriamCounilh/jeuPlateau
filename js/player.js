@@ -1,11 +1,12 @@
 class Player {
 
-    constructor(className) {
+    constructor(className, weapon) {
         this.life = 100;
+        this.name = "";
         this.className = className;
+        this.position = null;
+        this.weapon = weapon;
+        this.shield = false;
     }
 
-    status() {
-        return `${this.className} a ${this.life} points de vie`;
-    }
 }

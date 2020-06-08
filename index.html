@@ -116,17 +116,19 @@
                         <div class="progress-bar progress-bar-striped bg-warning active" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25</div>
                         <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50</div>
                         <div class="progress-bar progress-bar-striped bg-info active" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75</div-->
-                        <div class="progress-bar progress-bar-striped bg-success active" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+                        <div id="progressBarPlayer1" class="progress-bar progress-bar-striped bg-success active" role="progressbar" style="width: 100%">100</div>
                     </div>
                     <div class="weaponPlayer1">
                         <div><img class="imgWeaponBox mt-3" src="img/arme/baguette.png"></div>
                         <div><h6>Arme par défaut</h6></div>
                         <div><h6>Dégâts : 10 points</h6></div>
                     </div>
-                    <div class="movementPlayer1">
-                        <input type="text" class="mb-3 form-control text-center"  placeholder="Se déplacer" disabled>
-                        <input type="text" class="mb-3 form-control text-center" placeholder="Se battre" disabled>
-                        <input type="text" class="mb-3 form-control text-center" placeholder="Se défendre" disabled>
+                    <div>
+                        <input type="button" class="mb-3 form-control text-center actionPlayer1" value="Se battre" onclick="fight('player1')" disabled>
+                        <input type="button" class="mb-3 form-control text-center actionPlayer1" value="Se défendre" onclick="defend('player1')" disabled>
+                    </div>
+                    <div>
+                        <div><img class="imgPawn mt-3 d-none" id="shieldPlayer1" src="img/bouclier.png"></div>
                     </div>
                 </div>
             </div>
@@ -140,17 +142,19 @@
                     <div><img class="imgPawn" src="img/pion/chapeau_3.png"></div>
                     <div><h3 id="firstName2">Ron</h3></div>
                     <div class="progress">
-                      <div class="progress-bar progress-bar-striped bg-success active" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+                      <div id="progressBarPlayer2" class="progress-bar progress-bar-striped bg-success active" role="progressbar" style="width: 100%">100</div>
                     </div>
                     <div class="weaponPlayer2">
                         <div><img class="imgWeaponBox mt-3" src="img/arme/baguette.png"></div>
                         <div><h6>Arme par défaut</h6></div>
                         <div><h6>Dégâts : 10 points</h6></div>
                     </div>
-                    <div class="movementPlayer2">
-                        <input type="text" class="mb-3 form-control text-center" placeholder="Se déplacer" disabled>
-                        <input type="text" class="mb-3 form-control text-center" placeholder="Se battre" disabled>
-                        <input type="text" class="mb-3 form-control text-center" placeholder="Se défendre" disabled>
+                    <div>
+                        <input type="button" class="mb-3 form-control text-center actionPlayer2" value="Se battre" onclick="fight('player2')" disabled>
+                        <input type="button" class="mb-3 form-control text-center actionPlayer2" value="Se défendre" onclick="defend('player2')" disabled>
+                    </div>
+                    <div>
+                        <div><img class="imgPawn mt-3 d-none" id="shieldPlayer2" src="img/bouclier.png"></div>
                     </div>
                 </div>
             </div>

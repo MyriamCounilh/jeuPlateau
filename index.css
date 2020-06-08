@@ -38,6 +38,10 @@ case {
     height: 70px;
 }
 
+.way {
+    background-color: lightgray;
+}
+
 .obstacle{
     background-image: url(img/arbre.png);
     background-size: contain;
