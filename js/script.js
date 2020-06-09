@@ -19,7 +19,7 @@ var level = {
 
 var weaponDefault = new Weapon('Arme par défaut', 10, 'baguette', 'baguette.png');
 var weaponCollier = new Weapon('Collier ensorcellé', 15, 'collierOpale', 'collierOpale.png');
-var weaponAcromantula = new Weapon('Grande Tarentule', 20, 'acromantula', 'acromantula.jpg');
+var weaponAcromantula = new Weapon('Grande Tarentule', 20, 'acromantula', 'acromantula.png');
 var weaponFaux = new Weapon('Faux qui invoque un épouvantard', 30, 'faux', 'faux.png');
 var weaponPotion = new Weapon('potion Flamme Violette', 10, 'potion', 'potion.png');
 poudlard['weapons'] = [weaponCollier, weaponAcromantula, weaponFaux, weaponPotion];
@@ -30,38 +30,9 @@ var indexRangee = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","
 var firstNameInput1;
 var firstNameInput2;
 
-function generate() {
-    console.clear();
-    difficulty = findLevel();
 
-    if (level[difficulty] === undefined) {
-        alert("Merci de sélectionner une difficulté !");
-        return;
-    }
-
-    poudlard['player1'] = new Player('joueur1', weaponDefault);
-    poudlard['player2'] = new Player('joueur2', weaponDefault);
-
-    setPlayersName();
-
-    $('.box').each(function() {
-        $(this).removeClass('d-none');
-    });
-
-    initProgressBar($("#progressBarPlayer1"));
-    initProgressBar($("#progressBarPlayer2"));
-
-    const textPlateau = `<h3 class="text-center mb-3"> Bienvenue à Poudlard, 2 sorciers s'affrontent en duel chacun leur tour.
-                         Attention, il ne peut en rester qu'un !</h3>`;
-
-    document.getElementById("textePlateau").innerHTML = textPlateau;
-
-    // Le plateau
-    document.documentElement.style.setProperty('--qteColones', level[difficulty].colonnes);
-    const cible = document.querySelector("plateau");
-    clearPlateau(cible);
-
-    // Création des cases
+// Création des cases
+function generateCase(cible) {
     let letter;
     for (let range = 0; range < level[difficulty].rangees; range++) {
         letter = indexRangee[range];
@@ -69,8 +40,10 @@ function generate() {
             new Case(letter, range, colonne, cible, clickInWayCase);
         }
     }
+}
 
-    //Case inaccessible
+//Case inaccessible
+function generateObstacle() {
     let obstaclesToAdd = level[difficulty].obstacles;
     let position;
     while (obstaclesToAdd > 0) {
@@ -80,21 +53,22 @@ function generate() {
             poudlard[position].update("obstacle", true);
         }
     }
+}
 
-    //Position des armes
+//Position des armes
+function generateWeapon() {
     let weaponToAdd = poudlard['weapons'].length;
     let positionWeapon;
     while (weaponToAdd > 0) {
         positionWeapon = randomCaseNumber();
-        if (!isTaken(positionWeapon.col, positionWeapon.row)){
+        if (!isTaken(positionWeapon.col, positionWeapon.row)) {
             weaponToAdd--;
             poudlard[indexRangee[positionWeapon.row] + positionWeapon.col].update("weapon", poudlard['weapons'][weaponToAdd]);
         }
     }
+}
 
-    placePlayer1();
-    placePlayer2();
-
+function rollDice() {
     if (Math.random() > 0.5) {
         poudlard['inTurn'] = poudlard['player1'];
         showModal(`${firstNameInput1} commence la partie`)
@@ -105,6 +79,45 @@ function generate() {
     showInTurn(true);
 }
 
+function initDisplay() {
+    $('.box').each(function () {
+        $(this).removeClass('d-none');
+    });
+
+    initProgressBar($("#progressBarPlayer1"));
+    initProgressBar($("#progressBarPlayer2"));
+
+    $('#textePlateau').removeClass('d-none');
+
+    // Le plateau
+    document.documentElement.style.setProperty('--qteColones', level[difficulty].colonnes);
+}
+
+function generate() {
+    difficulty = findLevel();
+
+    if (level[difficulty] === undefined) {
+        alert("Merci de sélectionner une difficulté !");
+        return;
+    }
+
+    setPlayersName();
+
+    initDisplay();
+
+    const cible = document.querySelector("plateau");
+    clearPlateau(cible);
+
+    generateCase(cible);
+    generateObstacle();
+    generateWeapon();
+    placePlayer1();
+    placePlayer2();
+
+    rollDice();
+}
+
+
 function initProgressBar(progressBar) {
     progressBar.removeClass('bg-info');
     progressBar.removeClass('bg-warning');
@@ -114,7 +127,13 @@ function initProgressBar(progressBar) {
     progressBar.text(100);
 }
 
+/**
+ *  @description : définir le nom des joueurs
+ */
 function setPlayersName() {
+    poudlard['player1'] = new Player('joueur1', weaponDefault);
+    poudlard['player2'] = new Player('joueur2', weaponDefault);
+
     firstNameInput1 = $('#firstNameInput1').val();
     firstNameInput2 = $('#firstNameInput2').val();
     if (firstNameInput1 === '') {
@@ -140,6 +159,10 @@ function clickInWayCase(c) {
     }
 }
 
+/**
+ *
+ * @param playerName
+ */
 function fight(playerName) {
     const player = poudlard[playerName];
     let playerDommage;
@@ -189,6 +212,9 @@ function fight(playerName) {
     switchPlayer(false);
 }
 
+/**
+ * @description bouton défendre : placec un bouclier au joueur
+ */
 function defend(playerName) {
     const player = poudlard[playerName];
     player.shield = true;
@@ -197,7 +223,6 @@ function defend(playerName) {
     } else {
         $("#shieldPlayer2").removeClass('d-none');
     }
-    //console.log(player);
     switchPlayer(false);
 }
 
@@ -219,7 +244,8 @@ function isPlayerNext(player) {
 }
 
 /**
- * @description
+ * @param c
+ * @param player
  */
 function clickInWayCaseForPlayer(c, player) {
     drawWay(player, false);
@@ -302,7 +328,9 @@ function switchWeapon(player, col, row) {
                            <div><h6>Dégâts : ${player.weapon.degat} points</h6></div>`);
 }
 
-//Place le joueur1
+/**
+ * @description place le joueur1
+ */
 function placePlayer1(){
     let position = randomCaseNumber();
     let error = 0;
@@ -318,7 +346,9 @@ function placePlayer1(){
     }
 }
 
-//Place le joueur2
+/**
+ * @description place le joueur2
+ */
 function placePlayer2(){
     let position = randomCaseNumber();
     let error = 0;
@@ -361,6 +391,12 @@ function randomCaseNumber() {
     };
 }
 
+/**
+ * @description Obstacle ou player
+ * @param col
+ * @param row
+ * @returns {boolean}
+ */
 function isObstacleOrPlayer(col, row) {
     if (row >= level[difficulty].rangees || row < 0 || col >= level[difficulty].colonnes || col < 0) {
         return true;
@@ -369,9 +405,6 @@ function isObstacleOrPlayer(col, row) {
     return (poudlard[indexRangee[row] + col].player);
 }
 
-/**
- * @description
- */
 function isTaken(col, row) {
     if (row >= level[difficulty].rangees || row < 0 || col >= level[difficulty].colonnes || col < 0) {
         return true;
@@ -408,7 +441,7 @@ function findLevel() {
 }
 
 /**
- * @description
+ * @description Les joueurs avancent tour à tour
  */
 function showInTurn(canMove) {
     if (poudlard['inTurn'] === poudlard['player1']) {

@@ -1,5 +1,4 @@
 class Case extends Composant{
-
     constructor(lettre, row, col, domTarget, clickEventMethod){
         super(lettre + col, "case", domTarget);
         this.obstacle = false;
@@ -11,14 +10,11 @@ class Case extends Composant{
         this.clickEventMethod = clickEventMethod;
         this.DOM.onclick = this.handleClick.bind(this);
     }
-
-//Clique
     handleClick() {
         if (this.way) {
             this.clickEventMethod(this);
         }
     }
-
     render(){
         this.DOM.className = "";
         if (this.obstacle) this.DOM.className = "obstacle";
@@ -26,13 +22,10 @@ class Case extends Composant{
         if (this.player) this.DOM.className = this.player.className;
         if (this.way) this.DOM.className = this.DOM.className + " way";
     }
-
     isTaken() {
-        console.log(this);
         if (this.obstacle) return true;
         if (this.player) return true;
         if (this.weapon) return true;
         return false;
     }
-
 }
